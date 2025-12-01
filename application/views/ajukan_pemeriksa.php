@@ -1,0 +1,223 @@
+
+<body class="">
+  <div class="wrapper ">
+     <div class="sidebar" data-color="azure" data-background-color="black" data-image="<?php echo base_url();?>images/BCPAPIN.png">
+      <div class="logo">
+        <a href="<?php echo site_url('auth') ?>" class="simple-text logo-normal">
+          <img src="<?php echo base_url();?>images/logo.png" style="width:40px;height:30px;"></img>
+         SEPERADIK
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item active  ">
+            <a class="nav-link" href="<?php echo site_url('auth') ?>">
+              <i class="material-icons">dashboard</i>
+              <p>Pengajuan Permohonan</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="<?php echo site_url('auth/browse_status') ?>">
+              <i class="material-icons">library_books</i>
+              <p>Browse Data</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg  navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="">SISTEM PELAYANAN IZIN BONGKAR TIMBUN MUAT DI LUAR KAWASAN PABEAN</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            
+            <ul class="navbar-nav">
+              
+              
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">person</i>
+                  <p class="d-lg-none d-md-block">
+                    Account
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <a class="dropdown-item" href="<?php echo site_url('auth/login')?>">Log out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      
+
+      <div class="content">
+        <div class="container-fluid">
+            </form>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-warning">
+                  <h3 class="card-title ">Periksa Kembali Data</h3>
+                  <h6>*Pastikan Data Sesuai</h6>
+                </div>
+                <div class="card-body">
+                  
+                  <div class="table-responsive">
+                    <table class="table" style="text-align: center;">
+                      <thead class=" text-warning">
+                        <th>Jenis Izin</th>
+                        <th>Nama Perusahaan</th>
+                        <th>Nomor</th>
+                        <th>Tanggal</th>
+                        <th>Nama Barang</th>
+                        <th>Jumlah</th>
+                        <th>Nama Sarkut</th>
+                        <th>Tgl Perkiraan</th>
+                        <th>Lokasi</th>
+                        <th>Surat Permohonan</th>
+                        
+                      </thead>
+                      <tbody>
+                    
+                      
+                        <tr >
+                          <td><?php 
+                            $stat = $utama->jenisdok;
+                            switch ( $stat ) {
+                              case "1":
+                                  echo 'Bongkar';
+                                  break;
+                              case "2":
+                                  echo 'Timbun';
+                                  break;
+                              case "3":
+                                  echo 'Muat';
+                                  break;
+                             }?></td>
+                          <td><?php echo $utama->namapersh ?></td>
+                          <td><?php echo $utama->nomohon ?></td>
+                          <td><?php echo tgl_text($utama->tglmohon) ?></td>
+                          <td><?php echo $utama->nm_brg ?></td>
+                          <td><?php echo $utama->muatan ?>
+                              <?php echo $utama->satuan ?> /
+                              <?php echo $utama->jum_kemasan ?>
+                              <?php echo $utama->sat_kemasan ?>
+                          </td>
+                          <td><?php echo $utama->sarkut ?></td>
+                          <td><?php echo tgl_text($utama->tgl_kira_muat) ?></td>
+                          <td><?php echo $utama->lokasi_muat ?></td>
+                          
+                          <td><a href="<?php echo base_url("/file_pdf/$utama->files"); ?><?php echo $row->id; ?>" download>Download</a></td>
+                          
+                        </tr>
+                      </tbody>
+                    </table>
+              
+                  </div>
+                  <form action="<?php echo site_url('auth/ajukan_pemeriksa_action') ?>" method='POST'>
+                    <input type="text" style="display:none" name="id" value="<?php echo $utama->id?>">
+                    <input type="text" style="display:none" name="wk_loket" value="<?php echo date("Y-m-d h:i:s") ?>">
+                    <input type="text" style="display:none" name="stat_loket" value="1">
+                    <input type="submit"  value='Ajukan' class="btn btn-success pull-right"></input>
+                  </form>
+                  <button onclick="window.location.href = '<?php echo site_url('auth/pengguna_jasa')?>';" class="btn btn-danger pull-right">Kembali</button>
+                 </div>
+                 </div>
+            </div>
+          </div>
+        </div>
+
+
+      
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="http://bcpangkalpinang.beacukai.go.id/">
+                  Bea Cukai Pangkal Pinang
+                </a>
+              </li>
+              <li>
+                <a href="http://bcpangkalpinang.beacukai.go.id/">
+                  About Us
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+ 
+  <!--   Core JS Files   -->
+  <script src="<?php echo base_url();?>js/core/jquery.min.js"></script>
+  <script src="<?php echo base_url();?>js/core/popper.min.js"></script>
+  <script src="<?php echo base_url();?>js/core/bootstrap-material-design.min.js"></script>
+  <script src="<?php echo base_url();?>js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!-- Plugin for the momentJs  -->
+  <script src="<?php echo base_url();?>js/plugins/moment.min.js"></script>
+  <!--  Plugin for Sweet Alert -->
+  <script src="<?php echo base_url();?>js/plugins/sweetalert2.js"></script>
+  <!-- Forms Validations Plugin -->
+  <script src="<?php echo base_url();?>js/plugins/jquery.validate.min.js"></script>
+  <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+  <script src="<?php echo base_url();?>js/plugins/jquery.bootstrap-wizard.js"></script>
+  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+  <script src="<?php echo base_url();?>js/plugins/bootstrap-selectpicker.js"></script>
+  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+  <script src="<?php echo base_url();?>js/plugins/bootstrap-datetimepicker.min.js"></script>
+  <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+  <script src="<?php echo base_url();?>js/plugins/jquery.dataTables.min.js"></script>
+  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+  <script src="<?php echo base_url();?>js/plugins/bootstrap-tagsinput.js"></script>
+  <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+  <script src="<?php echo base_url();?>js/plugins/jasny-bootstrap.min.js"></script>
+  <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+  <script src="<?php echo base_url();?>js/plugins/fullcalendar.min.js"></script>
+  <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+  <script src="<?php echo base_url();?>js/plugins/jquery-jvectormap.js"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="<?php echo base_url();?>js/plugins/nouislider.min.js"></script>
+  <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+  <!-- Library for adding dinamically elements -->
+  <script src="<?php echo base_url();?>js/plugins/arrive.min.js"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chartist JS -->
+  <script src="<?php echo base_url();?>js/plugins/chartist.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="<?php echo base_url();?>js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="<?php echo base_url();?>js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
+  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+  <script src="<?php echo base_url();?>demo/demo.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      md.initDashboardPageCharts();
+
+    });
+  </script>
+</body>
+
+</html>

